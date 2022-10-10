@@ -16,7 +16,7 @@ import testRoute from "./routes/v1/test";
 
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
-  res.render("../public/index.ejs");
+  res.render("index");
 });
 
 /* Here is the User Routes */
