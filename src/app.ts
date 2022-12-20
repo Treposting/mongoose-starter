@@ -1,18 +1,26 @@
 import cors from "cors";
 import "dotenv/config";
 import express, { Application, Request, Response } from "express";
+import dbConnect from "./utils/dbConnect";
 const app: Application = express();
 
 /* middleware  */
 app.use(cors());
 app.use(express.json());
 
+// connect to database
+try {
+  dbConnect();
+} catch (error) {
+  log.error(`Database error: ${error}`);
+}
 // set the view engine to ejs
 app.set("view engine", "ejs");
 
 /* here will be all the imports routes */
 import productRoute from "./routes/v1/productRoute";
 import testRoute from "./routes/v1/test";
+import log from "./utils/logger";
 
 /* here will be the all the routes */
 app.get("/", (req: Request, res: Response) => {
